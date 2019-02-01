@@ -8,12 +8,16 @@
               <img src="<%= book.book_url %>" alt="" >
             </div>
             <div class="panel-body">
-              <p class="item-title"><%= book.name.truncate(50).gsub("　", " ") %></p>
-                <div class="buttons text-center">
-                  <% if logged_in? %>
-                    <%= render 'books/favorite_button', book: book %>
-                  <% end %>
-                </div>
+               <% if book.persisted? %>
+                 <p class="item-title"><%= link_to book.name, book %></p>
+               <% else %>
+                 <p class="item-title"><%= book.name.truncate(50).gsub("　", " ") %></p>
+               <% end %>
+                  <div class="buttons text-center">
+                    <% if logged_in? %>
+                      <%= render 'books/favorite_button', book: book %>
+                    <% end %>
+                  </div>
             </div>
           </div>
         </div>

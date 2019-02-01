@@ -1,5 +1,10 @@
 class BooksController < ApplicationController
   before_action :require_user_logged_in
+  def show
+    @book = Book.find(params[:id])
+    @users = @book.users
+  end
+  
   def new
     @books = []
 
